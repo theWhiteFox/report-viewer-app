@@ -1,5 +1,7 @@
 # Report Viewer App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/32d07a94-0683-4adc-bd13-47f48d291bf7/deploy-status)](https://app.netlify.com/sites/bill-report-viewer/deploys)
+
 ## Overview
 
 The account manager of a fictional client company needs to view reports on how employees are making phone calls and
