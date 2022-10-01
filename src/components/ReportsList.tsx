@@ -37,7 +37,7 @@ const ReportsList = () => {
     const [secondary, setSecondary] = React.useState(false);
 
     return (
-        <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
+        <Box sx={{ flexGrow: 1, maxWidth: 1250 }}>
             <FormGroup row>
                 <FormControlLabel
                     control={
@@ -50,7 +50,7 @@ const ReportsList = () => {
                 />
             </FormGroup>
             <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={12} lg={12}>
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         Reports List
                     </Typography>
@@ -68,7 +68,7 @@ const ReportsList = () => {
                                             <ReceiptIcon />
                                         </ListItemIcon>
                                         <ListItemText
-                                            primary="Single-line item"
+                                            primary="Report list item"
                                             secondary={secondary ? 'Secondary text' : null} />
                                     </ListItem>
                                     <Divider sx={{ bgcolor: "secondary.dark" }} variant="middle" component="li" />
