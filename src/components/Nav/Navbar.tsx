@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { routes } from "../routes";
+import { routes } from "../../routes";
 import { NavLink } from "react-router-dom";
 
 const Navbar: FC = (): ReactElement => {

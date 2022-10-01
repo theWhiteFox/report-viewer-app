@@ -2,8 +2,8 @@ import { Box, Paper, CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { routes as appRoutes } from "./routes";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/Nav/Navbar";
+import Footer from "./components/Footer/Footer";
 
 export function App() {
 
@@ -37,7 +37,7 @@ export function App() {
             elevation={3}
             sx={{ padding: "1rem", backgroundColor: "secondary.light" }}
           >
-            <Routes>
+            <Routes location={location}>
               {appRoutes.map((route) => (
                 <Route
                   key={route.key}

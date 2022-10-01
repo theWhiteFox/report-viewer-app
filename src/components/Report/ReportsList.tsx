@@ -19,6 +19,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
+import LoadingSpinner from './LoadingSpinner'
+import { Link } from 'react-router-dom';
 
 function generate(element: React.ReactElement) {
     return [0, 1, 2].map((value) =>
@@ -32,9 +34,9 @@ const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
 }));
 
-
-const ReportsList = () => {
+const ReportsList = (props: any) => {
     const [secondary, setSecondary] = React.useState(false);
+    // const { pokemons, loading } = useGetPokemons();
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 1250 }}>
@@ -55,28 +57,41 @@ const ReportsList = () => {
                         Reports List
                     </Typography>
                     <Demo>
+                        {
+                            // loading && 
+                            // <div>
+                            //     <LoadingSpinner />
+                            // </div>
+                        }
                         <List>
                             {generate(
                                 <>
-                                    <ListItem
-                                        secondaryAction={<IconButton edge="end" aria-label="delete">
-                                            <FileOpenIcon />
-                                        </IconButton>}
+                                    <Link style={{ textDecoration: 'none' }}
+                                        to={{
+                                            pathname: `${props}`,
+                                        }}
+                                        state={{ modal: true }}
                                     >
+                                        <ListItem
+                                            secondaryAction={
+                                                <IconButton edge="end" aria-label="open">
+                                                    <FileOpenIcon />
+                                                </IconButton>}
+                                        >
 
-                                        <ListItemIcon>
-                                            <ReceiptIcon />
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary="Report list item"
-                                            secondary={secondary ? 'Secondary text' : null} />
-                                    </ListItem>
-                                    <Divider sx={{ bgcolor: "secondary.dark" }} variant="middle" component="li" />
+                                            <ListItemIcon>
+                                                <ReceiptIcon />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary="Report list item"
+                                                secondary={secondary ? 'Secondary text' : null} />
+                                        </ListItem>
+                                        <Divider sx={{ bgcolor: "secondary.dark" }} variant="middle" component="li" />
+                                    </Link>
                                 </>,
                             )}
                         </List>
                     </Demo>
-
                 </Grid>
             </Grid>
         </Box>

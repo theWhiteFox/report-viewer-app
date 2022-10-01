@@ -5,7 +5,7 @@ import {
 import { Counter } from '../features/counter/Counter';
 import AddIcon from '@mui/icons-material/Add'
 
-import ReportsList from '../components/ReportsList';
+import ReportsList from '../components/Report/ReportsList';
 
 function Home() {
 

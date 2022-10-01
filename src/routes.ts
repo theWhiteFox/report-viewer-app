@@ -2,6 +2,7 @@
 
 // pages
 import Home from "./pages/Home";
+import Modal from "./components/Modals/ReportDetails";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -14,6 +15,13 @@ export const routes: Array<IRoute> = [
         path: '/',
         enabled: true,
         component: Home
+    },
+    {
+        key: 'modal-route',
+        title: 'Report',
+        path: ':reportName',
+        enabled: true,
+        component: Modal
     },
     {
         key: 'about-route',
