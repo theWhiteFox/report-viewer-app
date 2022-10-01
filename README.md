@@ -29,10 +29,10 @@ API responses can be found in the `/api` directory.
 ### Report list
 - I want to see a list of available reports.
 - I want to be able to sort the report list by name and description.
-- For each report, I want to see:
--- The report's name,
--- The report's description,
--- A button to navigate to the report result table.
+* For each report, I want to see:
+  * The report's name,
+  * The report's description,
+  * A button to navigate to the report result table.
 - I want to be able to specify over which billing period a report is run.
 
 ### Report view
