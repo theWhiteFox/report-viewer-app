@@ -22,11 +22,12 @@ import FileOpenIcon from '@mui/icons-material/FileOpen';
 import LoadingSpinner from './LoadingSpinner'
 import { Link } from 'react-router-dom';
 
+import { useGetReportByNameQuery, useGetReportsQuery } from '../../services/report'
+
 function generate(element: React.ReactElement) {
-    return [0, 1, 2].map((value) =>
-        React.cloneElement(element, {
-            key: value,
-        }),
+    const { data, error, isLoading } = useGetReportByNameQuery('')
+    return data?.content.map((value: any) =>
+        value.name
     );
 }
 
@@ -34,9 +35,9 @@ const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
 }));
 
-const ReportsList = (props: any) => {
+const ReportsList = () => {
     const [secondary, setSecondary] = React.useState(false);
-    // const { pokemons, loading } = useGetPokemons();
+    const { data, error, isLoading } = useGetReportsQuery([])
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 1250 }}>
@@ -58,17 +59,17 @@ const ReportsList = (props: any) => {
                     </Typography>
                     <Demo>
                         {
-                            // loading && 
-                            // <div>
-                            //     <LoadingSpinner />
-                            // </div>
+                            isLoading &&
+                            <div>
+                                <LoadingSpinner />
+                            </div>
                         }
                         <List>
                             {generate(
                                 <>
                                     <Link style={{ textDecoration: 'none' }}
                                         to={{
-                                            pathname: `${props}`,
+                                            pathname: `${41}`,
                                         }}
                                         state={{ modal: true }}
                                     >
@@ -83,7 +84,10 @@ const ReportsList = (props: any) => {
                                                 <ReceiptIcon />
                                             </ListItemIcon>
                                             <ListItemText
-                                                primary="Report list item"
+                                                primary="Report name"
+                                                secondary={secondary ? 'Secondary text' : null} />
+                                            <ListItemText
+                                                primary="Report Description"
                                                 secondary={secondary ? 'Secondary text' : null} />
                                         </ListItem>
                                         <Divider sx={{ bgcolor: "secondary.dark" }} variant="middle" component="li" />

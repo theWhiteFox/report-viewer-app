@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useGetReportByNameQuery } from '../services/report'
 import {
   Typography,
 } from "@mui/material";
-import { Counter } from '../features/counter/Counter';
-import AddIcon from '@mui/icons-material/Add'
 
 import ReportsList from '../components/Report/ReportsList';
 
 function Home() {
+
+  const { data, error, isLoading } = useGetReportByNameQuery('')
 
   return (
     <>
@@ -16,7 +16,19 @@ function Home() {
       </Typography>
       <ReportsList />
       <div className="card">
-        <Counter />
+        <div className="App">
+          {error ? (
+            <>Oh no, there was an error</>
+          ) : isLoading ? (
+            <>Loading...</>
+          ) : data ? (
+            <>
+              <h3>{data.content.map((value: any) =>
+                value.id
+              )}</h3>
+            </>
+          ) : null}
+        </div>
       </div>
     </>
   )

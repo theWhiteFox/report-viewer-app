@@ -7,7 +7,7 @@ import { Card, IconButton } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CloseIcon from '@mui/icons-material/Close';
-import BasicTabs from './BasicTabs';
+// import BasicTabs from './BasicTabs';
 import { useState } from 'react';
 
 const style = {
@@ -39,10 +39,10 @@ export default function BasicModal() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+          <Box
+            sx={style}
+          >
+
             <Card className="poke-card" variant="outlined">
               <CardContent>
                 <Typography
@@ -65,9 +65,12 @@ export default function BasicModal() {
                   Report Name
                 </Typography>
                 <Typography>Type: report type</Typography>
-                <BasicTabs pokeDetails='' />
+                {/* <BasicTabs /> */}
               </CardContent>
             </Card>
+            <IconButton onClick={handleClose}>
+              <CloseIcon />
+            </IconButton>
           </Box>
         </Modal>
       </div>

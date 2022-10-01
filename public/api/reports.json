@@ -1,0 +1,32 @@
+{
+    "content": [
+        {
+            "id": 41,
+            "name": "Landline Accounts",
+            "description": "Landline accounts, locations and charges.",
+            "modifiedDate": "2017-01-27T10:40:43.000+0000"
+        },
+        {
+            "id": 245,
+            "name": "Mobile Data Devices",
+            "description": "Usage of devices with mobile data subscription.",
+            "modifiedDate": "2016-11-15T02:33:12.000+0000"
+        }
+    ],
+    "totalElements": 2,
+    "last": true,
+    "totalPages": 1,
+    "first": true,
+    "numberOfElements": 2,
+    "sort": [
+        {
+            "direction": "ASC",
+            "property": "queryName",
+            "ignoreCase": false,
+            "nullHandling": "NATIVE",
+            "ascending": true
+        }
+    ],
+    "size": 10,
+    "number": 0
+}
