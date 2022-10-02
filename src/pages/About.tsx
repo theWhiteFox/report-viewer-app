@@ -7,10 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { Counter } from '../features/counter/Counter';
 
 function About() {
-  const [count, setCount] = useState(0);
 
   // define theme
   const theme = createTheme({

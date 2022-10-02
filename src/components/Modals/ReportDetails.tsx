@@ -1,25 +1,25 @@
 
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Outlet, useLocation, useParams, useNavigate } from 'react-router-dom';
-import { Card, IconButton } from '@mui/material';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
+import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-// import BasicTabs from './BasicTabs';
 import { useState } from 'react';
+
+import ReportView from '../Report/ReportView';
 
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  maxWidth: 600,
+  width: '100%',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 1,
+
 };
 
 export default function BasicModal() {
@@ -42,33 +42,8 @@ export default function BasicModal() {
           <Box
             sx={style}
           >
-
-            <Card className="poke-card" variant="outlined">
-              <CardContent>
-                <Typography
-                  className="poke-number"
-                  sx={{ mb: 1.5 }}
-                  color="text.secondary"
-                >
-                  # report number
-                </Typography>
-                <CardMedia
-                  style={{ width: 'unset', margin: 'auto' }}
-                  component="img"
-                  height="194"
-                  image=''
-                  alt='report'
-                />
-              </CardContent>
-              <CardContent className="poke-card-content">
-                <Typography variant="h5" component="div">
-                  Report Name
-                </Typography>
-                <Typography>Type: report type</Typography>
-                {/* <BasicTabs /> */}
-              </CardContent>
-            </Card>
-            <IconButton onClick={handleClose}>
+            <ReportView />
+            <IconButton style={{ float: 'right', marginTop: '.5rem' }} onClick={handleClose}>
               <CloseIcon />
             </IconButton>
           </Box>

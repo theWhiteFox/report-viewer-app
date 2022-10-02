@@ -22,12 +22,13 @@ import FileOpenIcon from '@mui/icons-material/FileOpen';
 import LoadingSpinner from './LoadingSpinner'
 import { Link } from 'react-router-dom';
 
-import { useGetReportByNameQuery, useGetReportsQuery } from '../../services/report'
+import { useGetReportListQuery } from '../../services/report'
 
 function generate(element: React.ReactElement) {
-    const { data, error, isLoading } = useGetReportByNameQuery('')
-    return data?.content.map((value: any) =>
-        value.name
+    return [0, 1, 2].map((value) =>
+        React.cloneElement(element, {
+            key: value,
+        }),
     );
 }
 
@@ -37,7 +38,7 @@ const Demo = styled('div')(({ theme }) => ({
 
 const ReportsList = () => {
     const [secondary, setSecondary] = React.useState(false);
-    const { data, error, isLoading } = useGetReportsQuery([])
+    const { data, error, isLoading } = useGetReportListQuery('')
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 1250 }}>
@@ -49,7 +50,7 @@ const ReportsList = () => {
                             onChange={(event) => setSecondary(event.target.checked)}
                         />
                     }
-                    label="Enable secondary text"
+                    label="Show last modified"
                 />
             </FormGroup>
             <Grid container spacing={2}>
@@ -69,7 +70,7 @@ const ReportsList = () => {
                                 <>
                                     <Link style={{ textDecoration: 'none' }}
                                         to={{
-                                            pathname: `${41}`,
+                                            pathname: `${41}-${201708}.json`,
                                         }}
                                         state={{ modal: true }}
                                     >
@@ -83,12 +84,22 @@ const ReportsList = () => {
                                             <ListItemIcon>
                                                 <ReceiptIcon />
                                             </ListItemIcon>
-                                            <ListItemText
-                                                primary="Report name"
-                                                secondary={secondary ? 'Secondary text' : null} />
-                                            <ListItemText
-                                                primary="Report Description"
-                                                secondary={secondary ? 'Secondary text' : null} />
+                                            {error ? (
+                                                <>Oh no, there was an error</>
+                                            ) : isLoading ? (
+                                                <>Loading...</>
+                                            ) : data ? (
+                                                <>
+                                                    <h3>{data.content.map((value: any) => (
+                                                        <>
+                                                            <ListItemText
+                                                                primary={value.name + ' ' + value.description}
+                                                                secondary={secondary ? value.modifiedDate : null} />
+                                                        </>
+                                                    )
+                                                    )}</h3>
+                                                </>
+                                            ) : null}
                                         </ListItem>
                                         <Divider sx={{ bgcolor: "secondary.dark" }} variant="middle" component="li" />
                                     </Link>

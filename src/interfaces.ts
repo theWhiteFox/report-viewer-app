@@ -48,3 +48,17 @@ export interface IReport {
     ],
     size: number,
 }
+
+export interface IColumn {
+    id: 'name' | 'code' | 'population';
+    label: string;
+    minWidth?: number;
+    align?: 'right';
+    format?: (value: number) => string;
+}
+
+export interface IData {
+    name: string;
+    code: string;
+    population: number;
+}
