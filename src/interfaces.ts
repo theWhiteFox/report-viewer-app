@@ -50,15 +50,26 @@ export interface IReport {
 }
 
 export interface IColumn {
-    id: 'name' | 'code' | 'population';
-    label: string;
+    field: 'id' | 'officeLocation' | 'chargesEuro';
+    headerName: string;
     minWidth?: number;
     align?: 'right';
     format?: (value: number) => string;
 }
 
 export interface IData {
-    name: string;
-    code: string;
-    population: number;
+    id: string;
+    officeLocation: string;
+    chargesEuro: number;
+}
+
+export type Order = 'asc' | 'desc';
+
+export interface IEnhancedTableProps {
+    numSelected: number;
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof IData) => void;
+    onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    order: Order;
+    orderBy: string;
+    rowCount: number;
 }
