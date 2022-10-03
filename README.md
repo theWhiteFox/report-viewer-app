@@ -10,7 +10,7 @@ using mobile data. The candidate must provide a user interface to the API to all
 - Available reports.
 - Available data for each report for the specified billing period.
 
-## Build and run
+## Install Run Test Build
 - `yarn`
 - `yarn dev`
 - `yarn run test`
