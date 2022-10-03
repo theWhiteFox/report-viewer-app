@@ -1,6 +1,7 @@
 # Report Viewer App
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/32d07a94-0683-4adc-bd13-47f48d291bf7/deploy-status)](https://app.netlify.com/sites/bill-report-viewer/deploys)
+[![Netlify
+Status](https://api.netlify.com/api/v1/badges/32d07a94-0683-4adc-bd13-47f48d291bf7/deploy-status)](https://app.netlify.com/sites/bill-report-viewer/deploys)
 
 ## Overview
 
@@ -12,6 +13,7 @@ using mobile data. The candidate must provide a user interface to the API to all
 ## Build and run
 - `yarn`
 - `yarn dev`
+- `yarn run test`
 - `yarn build`
 
 ## UI Design
@@ -32,9 +34,9 @@ API responses can be found in the `/api` directory.
 - I want to see a list of available reports.
 - I want to be able to sort the report list by name and description.
 * For each report, I want to see:
-  * The report's name,
-  * The report's description,
-  * A button to navigate to the report result table.
+* The report's name,
+* The report's description,
+* A button to navigate to the report result table.
 - I want to be able to specify over which billing period a report is run.
 
 ### Report view

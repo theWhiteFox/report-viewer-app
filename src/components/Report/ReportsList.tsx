@@ -1,7 +1,7 @@
 // 1. list of reports
 // 2. sort list by name desc
 // 3. report list item name description button open report result table
-// 4. billing period sort by date ?
+// 4. billing period sort by date : 2 date pickers deafult date reange of 4 file jan 2017 dec 2017
 // /api/reports.json contains a list of available reports.
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles';

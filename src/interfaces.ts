@@ -60,7 +60,7 @@ export interface IColumn {
 export interface IData {
     id: string;
     officeLocation: string;
-    chargesEuro: number;
+    chargesEuro: string;
 }
 
 export type Order = 'asc' | 'desc';

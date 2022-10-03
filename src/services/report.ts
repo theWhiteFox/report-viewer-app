@@ -2,7 +2,9 @@
  * `/api/reports.json` contains a list of available reports.
  * `/api/reports/{reportId}-{billingPeriod}.json` contains 
  *  data for the report id `reportId` over the billing period 
- * `billingPeriod`. 
+ * `billingPeriod`.  If the API response is not found: render error, 
+ *  malformed or incomplete, I want to be informed accordingly
+ * .no iffec location specified
  */
 
 // Need to use the React-specific entry point to import createApi
@@ -17,12 +19,12 @@ export const reportsApi = createApi({
         getReportList: builder.query<IReport, string>({
             query: () => `reports-list.json`,
         }),
-        getReports: builder.query<IReports, string>({
-            query: (reportIdBillPeriod) => `reports/${reportIdBillPeriod}.json`,
+        getReport: builder.query<IReports, object>({
+            query: () => `${41}-${201708}.json`,
         }),
     }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetReportListQuery, useGetReportsQuery } = reportsApi
+export const { useGetReportListQuery, useGetReportQuery } = reportsApi
