@@ -1,22 +1,16 @@
 import {
   Typography,
 } from "@mui/material";
-
-import ReportsList from '../components/Report/ReportsList';
+import ReportList from '../components/Report/ReportList';
 
 function Home() {
-
-
 
   return (
     <>
       <Typography color="primary.dark" variant="h1">
         Home
       </Typography>
-      <ReportsList />
-      <div className="card">
-
-      </div>
+      <ReportList />
     </>
   )
 }

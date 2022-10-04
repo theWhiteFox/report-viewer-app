@@ -10,7 +10,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -21,11 +20,20 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
 import LoadingSpinner from './LoadingSpinner'
 import { Link } from 'react-router-dom';
+import ListItemReportText from './ListItemReportText'
+import { useGetReportListQuery, useGetReportQuery } from '../../services/report'
+import DateTimePickers from './BasicDateRangePicker'
 
-import { useGetReportListQuery } from '../../services/report'
+const array1 = ['a', 'b', 'c'];
+const iterator = array1.keys();
+
+for (const key of iterator) {
+    console.log(key);
+}
+const item = [1, 2, 3, 4]
 
 function generate(element: React.ReactElement) {
-    return [0, 1, 2].map((value) =>
+    return item.map((value: any) =>
         React.cloneElement(element, {
             key: value,
         }),
@@ -36,9 +44,12 @@ const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
 }));
 
-const ReportsList = () => {
+const ReportList = () => {
     const [secondary, setSecondary] = React.useState(false);
+
     const { data, error, isLoading } = useGetReportListQuery('')
+
+    // console.log(data)
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 1250 }}>
@@ -58,6 +69,8 @@ const ReportsList = () => {
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         Reports List
                     </Typography>
+                    <DateTimePickers />
+                    <br />
                     <Demo>
                         {
                             isLoading &&
@@ -80,7 +93,6 @@ const ReportsList = () => {
                                                     <FileOpenIcon />
                                                 </IconButton>}
                                         >
-
                                             <ListItemIcon>
                                                 <ReceiptIcon />
                                             </ListItemIcon>
@@ -89,16 +101,9 @@ const ReportsList = () => {
                                             ) : isLoading ? (
                                                 <>Loading...</>
                                             ) : data ? (
-                                                <>
-                                                    <h3>{data.content.map((value: any) => (
-                                                        <>
-                                                            <ListItemText
-                                                                primary={value.name + ' ' + value.description}
-                                                                secondary={secondary ? value.modifiedDate : null} />
-                                                        </>
-                                                    )
-                                                    )}</h3>
-                                                </>
+                                                <h3>
+                                                    <ListItemReportText />
+                                                </h3>
                                             ) : null}
                                         </ListItem>
                                         <Divider sx={{ bgcolor: "secondary.dark" }} variant="middle" component="li" />
@@ -113,4 +118,4 @@ const ReportsList = () => {
     );
 }
 
-export default ReportsList
+export default ReportList

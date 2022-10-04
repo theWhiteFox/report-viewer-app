@@ -2,15 +2,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import { IColumn, IData } from '../../interfaces';
 import { useGetReportQuery } from '../../services/report';
 
-const columns: IColumn[] = [
-    { field: 'id', headerName: 'Account Id', minWidth: 120 },
-    { field: 'officeLocation', headerName: 'Office Location', minWidth: 140 },
-    { field: 'chargesEuro', headerName: 'Charges Euro', minWidth: 140 }
-];
-
-function generate(data: any) {
-    console.log(data?.columns[0], data?.columns[1], data?.columns[2])
-}
+let columns: IColumn[] = [];
+let rowsData: any[] = [];
 
 function createData(
     id: string,
@@ -20,7 +13,7 @@ function createData(
     return { id, officeLocation, chargesEuro };
 }
 
-const rowsData = [
+const rowsDataOld = [
     createData('58935372', 'Waterford', '7465.33'),
     createData('India', 'IN', '1324171354'),
     createData('China', 'CN', '1403500365'),
@@ -39,9 +32,25 @@ const rowsData = [
     createData('Brazil', 'BR', '210147125'),
 ];
 
+function generate(data: any) {
+    columns = [
+        { field: 'id', headerName: `${data?.columns[0]}`, minWidth: 120 },
+        { field: 'officeLocation', headerName: `${data?.columns[1]}`, minWidth: 140 },
+        { field: 'chargesEuro', headerName: `${data?.columns[2]}`, minWidth: 140 }
+    ];
+    {
+        data?.data.slice(1, data?.data.length).map((item: any, index: any) => {
+            return (
+                createData(item[0], item[1], item[2])
+            );
+        })
+    }
+}
+
 export default function DataTable() {
-    const { data } = useGetReportQuery({})
+    const { data } = useGetReportQuery({ reportId: '41', billingPeriod: '201708' })
     generate(data)
+
     return (
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid

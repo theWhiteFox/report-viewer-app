@@ -19,8 +19,15 @@ export const reportsApi = createApi({
         getReportList: builder.query<IReport, string>({
             query: () => `reports-list.json`,
         }),
-        getReport: builder.query<IReports, object>({
-            query: () => `${41}-${201708}.json`,
+        getReport: builder.query<IReports, { reportId: string, billingPeriod: string }>({
+            query: (arg) => {
+                const { reportId, billingPeriod } = arg;
+                console.log('arg: ', arg);
+                return {
+                    url: `reports/${reportId}-${billingPeriod}.json`,
+                    params: { reportId, billingPeriod },
+                }
+            },
         }),
     }),
 })
