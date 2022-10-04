@@ -23,13 +23,8 @@ import { Link } from 'react-router-dom';
 import ListItemReportText from './ListItemReportText'
 import { useGetReportListQuery, useGetReportQuery } from '../../services/report'
 import DateTimePickers from './BasicDateRangePicker'
+import { ListItemText } from '@mui/material';
 
-const array1 = ['a', 'b', 'c'];
-const iterator = array1.keys();
-
-for (const key of iterator) {
-    console.log(key);
-}
 const item = [1, 2, 3, 4]
 
 function generate(element: React.ReactElement) {
@@ -46,10 +41,7 @@ const Demo = styled('div')(({ theme }) => ({
 
 const ReportList = () => {
     const [secondary, setSecondary] = React.useState(false);
-
-    const { data, error, isLoading } = useGetReportListQuery('')
-
-    // console.log(data)
+    const { data, error, isLoading } = useGetReportQuery({ reportId: '41', billingPeriod: '201708' })
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 1250 }}>
@@ -101,9 +93,17 @@ const ReportList = () => {
                                             ) : isLoading ? (
                                                 <>Loading...</>
                                             ) : data ? (
-                                                <h3>
-                                                    <ListItemReportText />
-                                                </h3>
+                                                <>
+                                                    <h3>{data.columns.map((value: any) => (
+                                                        <>
+                                                            <ListItemText
+                                                                primary={value}
+                                                                secondary={secondary ? value : null} />
+                                                        </>
+                                                    )
+                                                    )}</h3>
+                                                </>
+
                                             ) : null}
                                         </ListItem>
                                         <Divider sx={{ bgcolor: "secondary.dark" }} variant="middle" component="li" />
