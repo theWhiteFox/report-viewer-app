@@ -27,7 +27,7 @@ export interface IReport {
     content: [
         {
             id: string,
-            name?: string,
+            name: string,
             description: string,
             modifiedDate: Date
         },

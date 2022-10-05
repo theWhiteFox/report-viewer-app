@@ -18,9 +18,9 @@ export const routes: Array<IRoute> = [
     },
     {
         key: 'modal-route',
-        title: 'Report',
+        title: '',
         path: ':reportId',
-        enabled: true,
+        enabled: false,
         component: Modal
     },
     {
@@ -32,9 +32,9 @@ export const routes: Array<IRoute> = [
     },
     {
         key: 'not-found-route',
-        title: 'Not found',
+        title: '',
         path: '*',
-        enabled: true,
+        enabled: false,
         component: NotFound
     }
 ]
