@@ -31,6 +31,12 @@ export interface IReport {
             description: string,
             modifiedDate: Date
         },
+        {
+            id: string,
+            name: string,
+            description: string,
+            modifiedDate: Date
+        },
     ],
     totalElements: number,
     last: boolean,
