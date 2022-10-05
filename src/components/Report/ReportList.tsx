@@ -20,15 +20,19 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
 import LoadingSpinner from './LoadingSpinner'
 import { Link } from 'react-router-dom';
-import ListItemReportText from './ListItemReportText'
 import { useGetReportListQuery, useGetReportQuery } from '../../services/report'
 import DateTimePickers from './BasicDateRangePicker'
 import { ListItemText } from '@mui/material';
 
-const item = [1, 2, 3, 4]
+const reports = {
+    reportId: '245',
+    billingPeriod: '201708'
+}
+
+const numberOfReports = [1, 2, 3, 4]
 
 function generate(element: React.ReactElement) {
-    return item.map((value: any) =>
+    return numberOfReports.map((value: any) =>
         React.cloneElement(element, {
             key: value,
         }),
@@ -41,7 +45,15 @@ const Demo = styled('div')(({ theme }) => ({
 
 const ReportList = () => {
     const [secondary, setSecondary] = React.useState(false);
-    const { data, error, isLoading } = useGetReportQuery({ reportId: '41', billingPeriod: '201708' })
+
+    console.log(numberOfReports[0])
+
+    const report = useGetReportQuery({ reportId: `${reports.reportId}`, billingPeriod: `${reports.billingPeriod}` })
+    const { data, error, isLoading } = useGetReportListQuery('')
+
+    // data?.content.map((value: any) => {
+    //     reports.reportId = value.id
+    // })
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 1250 }}>
@@ -53,7 +65,7 @@ const ReportList = () => {
                             onChange={(event) => setSecondary(event.target.checked)}
                         />
                     }
-                    label="Show last modified"
+                    label="last modified"
                 />
             </FormGroup>
             <Grid container spacing={2}>
@@ -75,7 +87,7 @@ const ReportList = () => {
                                 <>
                                     <Link style={{ textDecoration: 'none' }}
                                         to={{
-                                            pathname: `${41}-${201708}.json`,
+                                            pathname: `${reports.reportId}-${reports.billingPeriod}.json`,
                                         }}
                                         state={{ modal: true }}
                                     >
@@ -94,16 +106,22 @@ const ReportList = () => {
                                                 <>Loading...</>
                                             ) : data ? (
                                                 <>
-                                                    <h3>{data.columns.map((value: any) => (
+                                                    <h3>
                                                         <>
-                                                            <ListItemText
-                                                                primary={value}
-                                                                secondary={secondary ? value : null} />
+                                                            {reports.reportId === '41' ? (
+                                                                <ListItemText
+                                                                    primary={data?.content[0].name + ': ' + data?.content[0].description}
+                                                                    secondary={secondary ? data?.content[0].modifiedDate.toString() : null}
+                                                                />
+                                                            ) : (
+                                                                <ListItemText
+                                                                    primary={data?.content[1].name + ': ' + data?.content[1].description}
+                                                                    secondary={secondary ? 'Secondary text' : null}
+                                                                />
+                                                            )}
                                                         </>
-                                                    )
-                                                    )}</h3>
+                                                    </h3>
                                                 </>
-
                                             ) : null}
                                         </ListItem>
                                         <Divider sx={{ bgcolor: "secondary.dark" }} variant="middle" component="li" />

@@ -16,11 +16,9 @@ import { NavLink } from "react-router-dom";
 
 const Navbar: FC = (): ReactElement => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-
     const handleOpenNavMenu = (event: any) => {
         setAnchorElNav(event.currentTarget);
     };
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };

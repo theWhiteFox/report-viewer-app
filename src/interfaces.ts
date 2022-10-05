@@ -26,8 +26,8 @@ export interface IReports {
 export interface IReport {
     content: [
         {
-            id: number,
-            name: string,
+            id: string,
+            name?: string,
             description: string,
             modifiedDate: Date
         },
@@ -61,6 +61,17 @@ export interface IData {
     id: string;
     officeLocation: string;
     chargesEuro: string;
+}
+
+export interface IData {
+    id: string;
+    officeLocation: string;
+    chargesEuro: string;
+}
+
+export interface IMobileData {
+    id: string,
+    usageBytes: string,
 }
 
 export type Order = 'asc' | 'desc';

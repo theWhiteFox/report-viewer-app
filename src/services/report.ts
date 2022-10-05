@@ -3,8 +3,7 @@
  * `/api/reports/{reportId}-{billingPeriod}.json` contains 
  *  data for the report id `reportId` over the billing period 
  * `billingPeriod`.  If the API response is not found: render error, 
- *  malformed or incomplete, I want to be informed accordingly
- * .no iffec location specified
+ *  malformed or incomplete, no location specified
  */
 
 // Need to use the React-specific entry point to import createApi
@@ -22,7 +21,7 @@ export const reportsApi = createApi({
         getReport: builder.query<IReports, { reportId: string, billingPeriod: string }>({
             query: (arg) => {
                 const { reportId, billingPeriod } = arg;
-                console.log('arg: ', arg);
+
                 return {
                     url: `reports/${reportId}-${billingPeriod}.json`,
                     params: { reportId, billingPeriod },
