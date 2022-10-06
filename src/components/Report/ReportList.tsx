@@ -21,8 +21,8 @@ import FileOpenIcon from '@mui/icons-material/FileOpen';
 import LoadingSpinner from './LoadingSpinner'
 import { Link } from 'react-router-dom';
 import { useGetReportListQuery, useGetReportQuery } from '../../services/report'
-import DateTimePickers from './BasicDateRangePicker'
 import { ListItemText } from '@mui/material';
+import MaterialUIPickers from './MaterialUIPickers'
 
 const reports = {
     reportId: '41',
@@ -68,13 +68,13 @@ const ReportList = () => {
                     }
                     label="last modified"
                 />
+                <MaterialUIPickers />
             </FormGroup>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={12} lg={12}>
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         Reports List
                     </Typography>
-                    <DateTimePickers />
                     <br />
                     <Demo>
                         {

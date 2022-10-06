@@ -10,6 +10,7 @@
     "test": "vitest --coverage"
   },
   "dependencies": {
+    "@date-io/date-fns": "^2.16.0",
     "@date-io/dayjs": "^2.16.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -17,9 +18,11 @@
     "@mui/material": "^5.10.7",
     "@mui/x-data-grid": "^5.17.5",
     "@mui/x-date-pickers": "^5.0.3",
-    "@mui/x-date-pickers-pro": "^5.0.3",
     "@reduxjs/toolkit": "^1.8.5",
+    "@types/date-fns": "^2.6.0",
+    "@types/datejs": "^0.0.32",
     "@types/react-redux": "^7.1.24",
+    "date-fns": "^2.29.3",
     "dayjs": "^1.11.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
