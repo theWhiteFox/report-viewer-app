@@ -21,8 +21,8 @@ import FileOpenIcon from '@mui/icons-material/FileOpen';
 import LoadingSpinner from './LoadingSpinner'
 import { Link } from 'react-router-dom';
 import { useGetReportListQuery, useGetReportQuery } from '../../services/report'
-import { ListItemText } from '@mui/material';
-import MaterialUIPickers from './MaterialUIPickers'
+import { Button, FormControl, InputLabel, ListItemText, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import MaterialUIPickers from './MaterialUIPicker'
 
 const reports = {
     reportId: '41',
@@ -49,6 +49,11 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
 const ReportList = () => {
+    const [age, setAge] = useState('');
+
+    const handleChange = (event: SelectChangeEvent) => {
+        setAge(event.target.value as string);
+    };
     const [secondary, setSecondary] = useState(false);
 
     useGetReportQuery({ reportId: `${reports.reportId}`, billingPeriod: `${reports.billingPeriod}` })
@@ -59,24 +64,33 @@ const ReportList = () => {
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 1250 }}>
             <FormGroup row>
-                <FormControlLabel
+                <FormControl sx={{ minWidth: 120, mb: 2, mr: 2 }}>
+                    <InputLabel id="demo-simple-select-label">Name</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={age}
+                        label="Age"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value={20}>Ascending</MenuItem>
+                        <MenuItem value={30}>Descending</MenuItem>
+                    </Select>
+                </FormControl>
+                <MaterialUIPickers />
+                <FormControlLabel sx={{ mb: 2, ml: 1 }}
                     control={
                         <Checkbox
                             checked={secondary}
                             onChange={(event) => setSecondary(event.target.checked)}
                         />
                     }
-                    label="last modified"
+                    label="Billing date"
                 />
-                <MaterialUIPickers />
             </FormGroup>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={12} lg={12}>
-                    <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-                        Reports List
-                    </Typography>
-                    <br />
-                    <Demo>
+                    <Demo sx={{ mt: 2, mb: 1 }}>
                         {
                             isLoading &&
                             <div>
@@ -110,7 +124,7 @@ const ReportList = () => {
                                                     <h3>
                                                         <ListItemText
                                                             primary={data?.content[0].name + ': ' + data?.content[0].description}
-                                                            secondary={secondary ? data?.content[0].modifiedDate.toString() : null}
+                                                            secondary={secondary ? reports.billingPeriod : null}
                                                         />
                                                     </h3>
                                                 </>
@@ -141,7 +155,7 @@ const ReportList = () => {
                                                 <h3>
                                                     <ListItemText
                                                         primary={data?.content[1].name + ': ' + data?.content[1].description}
-                                                        secondary={secondary ? 'Secondary text' : null}
+                                                        secondary={secondary ? reportsMob.billingPeriod : null}
                                                     />
                                                 </h3>
                                             ) : null}

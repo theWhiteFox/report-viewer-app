@@ -94,7 +94,7 @@ const Navbar: FC = (): ReactElement => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
                     >
-                        React Starter App
+                        Report Viewer App
                     </Typography>
                     <IconButton
                         size="large"

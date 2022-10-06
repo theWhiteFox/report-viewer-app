@@ -1,4 +1,3 @@
-import { Outlet, useLocation, useParams, useNavigate } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { IData } from '../../interfaces';
 import { useGetReportQuery } from '../../services/report';
@@ -14,12 +13,11 @@ function createData(
 }
 
 const generate = (data: any) => {
-    rowsData = data?.data.slice(1, data?.data.length).map((item: any, index: any) => createData(item[0], item[1], item[2]))
+    rowsData = data?.data.slice(1, data?.data.length).map((item: any) => createData(item[0], item[1], item[2]))
 }
 
 export default function DataTable() {
-    const { reportId } = useParams();
-    const { data, error, isLoading } = useGetReportQuery({ reportId: '41', billingPeriod: '201708' })
+    const { data } = useGetReportQuery({ reportId: '41', billingPeriod: '201708' })
     const columns: GridColDef[] = [
         { field: 'id', headerName: `${data?.columns[0]}`, minWidth: 120 },
         { field: 'officeLocation', headerName: `${data?.columns[1]}`, minWidth: 140 },
