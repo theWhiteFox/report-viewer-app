@@ -99,7 +99,7 @@ const Navbar: FC = (): ReactElement => {
                     <IconButton
                         size="large"
                         aria-label="account of current user"
-                        href="https://github.com/theWhiteFox/"
+                        href="https://github.com/theWhiteFox/report-viewer-app"
                         color="inherit"
                     >
                         <GitHubIcon />
